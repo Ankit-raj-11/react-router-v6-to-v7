@@ -1,0 +1,7 @@
+Test-repo/
+node_modules/
+.codemod-backup/
+migration-report.html
+*.log
+.codemod-stats/
+__apply_tmp.ts
