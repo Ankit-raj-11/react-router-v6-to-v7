@@ -1,0 +1,43 @@
+name: react-router-v6-to-v7
+version: 1.0.0
+description: Automate migration from React Router v6 to v7 (imports, future flags, deprecated APIs)
+author: [your-name-or-github-username]
+license: MIT
+repository: https://github.com/[your-username]/react-router-v6-to-v7
+
+engine:
+  codemod: "^1.0.0"
+
+steps:
+  - name: "Update package.json dependencies"
+    type: "jssg"
+    script: "./jssg/update-package.ts"
+    
+  - name: "Convert import statements"
+    type: "jssg"
+    script: "./jssg/update-imports.ts"
+    
+  - name: "Add future flags to Router components"
+    type: "jssg"
+    script: "./jssg/add-future-flags.ts"
+    
+  - name: "Remove deprecated json/defer APIs"
+    type: "jssg"
+    script: "./jssg/remove-json-defer.ts"
+
+  - name: "AI edge case handler"
+    type: "llm"
+    prompt: "Handle remaining React Router v6 patterns that couldn't be transformed deterministically"
+    optional: true
+
+keywords:
+  - react-router
+  - migration
+  - codemod
+  - v6-to-v7
+  - jssg
+
+tags:
+  - react
+  - router
+  - upgrade

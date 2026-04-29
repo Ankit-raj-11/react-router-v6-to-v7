@@ -1,0 +1,2 @@
+// This expected directory represents the ideal React Router v7 code.
+// The output of the jssg codemod applied to 'input' must exactly match the contents here.
