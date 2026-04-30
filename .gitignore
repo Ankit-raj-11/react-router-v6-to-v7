@@ -1,7 +1,23 @@
-Test-repo/
+# Dependencies
 node_modules/
-.codemod-backup/
+
+# Test repo (submodule / cloned for testing)
+Test-repo/
+
+# Build artifacts from codemod publish
+build_codemod/
+temp_proj/
+
+# Generated reports
 migration-report.html
 *.log
+
+# Codemod runtime artifacts
+.codemod-backup/
 .codemod-stats/
 __apply_tmp.ts
+__runner_tmp.ts
+
+# Publish-only ignore files (not needed in repo)
+.codemodignore
+.npmignore

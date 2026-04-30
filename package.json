@@ -1,20 +1,27 @@
 {
   "name": "react-router-v6-to-v7",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
-  },
+  "description": "Zero-false-positive AST codemod to migrate React Router v6 to v7",
+  "main": "apply-codemod.js",
   "scripts": {
     "test": "node tests/test-runner.js",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "migrate": "node apply-codemod.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "react-router",
+    "codemod",
+    "migration",
+    "ast-grep",
+    "v6-to-v7"
+  ],
+  "author": "Ankit-raj-11",
+  "license": "MIT",
   "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ankit-raj-11/react-router-v6-to-v7"
+  },
   "devDependencies": {
     "@ast-grep/napi": "^0.42.1",
     "@remix-run/node": "^2.17.4",

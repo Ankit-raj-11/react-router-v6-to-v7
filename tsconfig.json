@@ -10,10 +10,16 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "types": ["node"],
-    "rootDir": "."
+    "rootDir": ".",
+    "jsx": "react-jsx"
   },
   "include": [
-    "jssg/**/*.ts",
-    "tests/**/*.ts"
+    "jssg/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "Test-repo",
+    "build_codemod",
+    "temp_proj"
   ]
 }

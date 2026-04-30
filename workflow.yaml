@@ -1,4 +1,4 @@
-version: "1.0"
+version: "1"
 name: "React Router v6 to v7 Migration Sequence"
 description: "Zero false-positive migration orchestrator utilizing deterministic jssg transforms and AI fallbacks."
 
@@ -9,77 +9,60 @@ nodes:
     description: "Replaces react-router-dom with react-router. Skips silently if not found."
     steps:
       - name: "Run update-package.ts"
-        type: "jssg"
-        path: "./jssg/update-package.ts"
-        options:
-          failSilently: true
+        run: "npx ts-node ./jssg/update-package.ts"
 
   - id: "transform-imports"
     name: "Transform import statements"
     type: "automatic"
     description: "Deterministically rewrites import paths to react-router, preserving all identifiers and comments."
-    dependsOn: ["update-package-json"]
+    depends_on: ["update-package-json"]
     steps:
       - name: "Run update-imports.ts"
-        type: "jssg"
-        path: "./jssg/update-imports.ts"
+        run: "npx ts-node ./jssg/update-imports.ts"
       - name: "Verify TypeScript compiles"
-        type: "command"
-        command: "npx tsc --noEmit"
-        onFailure: "revert"
+        run: "npx tsc --noEmit"
 
   - id: "add-future-flags"
     name: "Add future flags to Router components"
     type: "automatic"
     description: "Injects or merges the v7 future flag object into <BrowserRouter>, <HashRouter>, <MemoryRouter>, and <RouterProvider>."
-    dependsOn: ["transform-imports"]
+    depends_on: ["transform-imports"]
     steps:
       - name: "Run add-future-flags.ts"
-        type: "jssg"
-        path: "./jssg/add-future-flags.ts"
+        run: "npx ts-node ./jssg/add-future-flags.ts"
       - name: "Verify TypeScript compiles"
-        type: "command"
-        command: "npx tsc --noEmit"
-        onFailure: "revert"
+        run: "npx tsc --noEmit"
 
   - id: "remove-deprecated-apis"
     name: "Remove deprecated json/defer APIs"
     type: "automatic"
     description: "Replaces json() and defer() wrappers with plain return objects, preserving their contents."
-    dependsOn: ["add-future-flags"]
+    depends_on: ["add-future-flags"]
     steps:
       - name: "Run remove-json-defer.ts"
-        type: "jssg"
-        path: "./jssg/remove-json-defer.ts"
+        run: "npx ts-node ./jssg/remove-json-defer.ts"
       - name: "Verify TypeScript compiles"
-        type: "command"
-        command: "npx tsc --noEmit"
-        onFailure: "revert"
+        run: "npx tsc --noEmit"
 
   - id: "ai-edge-case-handler"
     name: "AI fallback for ambiguous routing patterns"
     type: "automatic"
     description: "Triggers only on code flagged by deterministic jssg transforms that require manual/AI review."
-    dependsOn: ["remove-deprecated-apis"]
+    depends_on: ["remove-deprecated-apis"]
     steps:
       - name: "LLM fallback for ambiguous patterns"
-        type: "llm"
-        prompt: "Fix remaining React Router v6 patterns. Rules: 1) Preserve all functionality 2) Add // CODEMOD: AI-MIGRATED comment 3) Ensure TypeScript compiles"
+        ai:
+          prompt: "Fix remaining React Router v6 patterns. Rules: 1) Preserve all functionality 2) Add // CODEMOD: AI-MIGRATED comment 3) Ensure TypeScript compiles"
       - name: "Verify TypeScript compiles"
-        type: "command"
-        command: "npx tsc --noEmit"
-        onFailure: "revert"
+        run: "npx tsc --noEmit"
 
   - id: "final-validation"
     name: "Final validation before completion"
     type: "automatic"
     description: "Ensures zero false positives and TypeScript compilation"
-    dependsOn: ["ai-edge-case-handler"]
+    depends_on: ["ai-edge-case-handler"]
     steps:
       - name: "Check project compilation"
-        type: "command"
-        command: "npx tsc --noEmit --project ."
+        run: "npx tsc --noEmit --project ."
       - name: "Check git diff"
-        type: "command"
-        command: "git diff --exit-code || echo 'Changes detected - review required'"
-        onFailure: "warn"
+        run: "git diff --exit-code || echo 'Changes detected - review required'"
