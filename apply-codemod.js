@@ -69,34 +69,7 @@ const TRANSFORMS = [
 console.log(BOLD(`\n🚀 Starting React Router v6 → v7 Codemod Pipeline`));
 console.log(DIM(`Target: ${targetDir}`));
 
-// 1. Package.json updater (Node 1)
-const packageJsonPath = path.join(targetDir, 'package.json');
-if (fs.existsSync(packageJsonPath)) {
-  console.log(`\n📦 [Step 1] Updating package.json dependencies...`);
-  const pkgStr = fs.readFileSync(packageJsonPath, 'utf8');
-  try {
-    const pkg = JSON.parse(pkgStr);
-    let modified = false;
-    for (const field of ['dependencies', 'devDependencies']) {
-      if (pkg[field] && pkg[field]['react-router-dom']) {
-        const v = pkg[field]['react-router-dom'];
-        delete pkg[field]['react-router-dom'];
-        pkg[field]['react-router'] = "^7.14.2";
-        modified = true;
-      }
-    }
-    if (modified) {
-      fs.writeFileSync(packageJsonPath, JSON.stringify(pkg, null, 4) + '\n', 'utf8');
-      console.log(GREEN(`  ✔ Replaced react-router-dom with react-router@7`));
-    } else {
-      console.log(DIM(`  - No react-router-dom dependency found to update.`));
-    }
-  } catch (e) {
-    console.log(RED(`  ❌ Failed to parse package.json: ` + e.message));
-  }
-} else {
-  console.log(YELLOW(`⚠ No package.json found in target directory.`));
-}
+
 
 // 2. Find all TS/TSX files
 function walkDir(dir) {
@@ -132,6 +105,35 @@ if (!hasBackup(targetDir) || force) {
   createBackup(targetDir, files);
 } else {
   console.log(YELLOW(`\n⚠ Backup already exists. Use --force to overwrite. Proceeding with existing backup.`));
+}
+
+// 1. Package.json updater (Moved here so it happens AFTER backup)
+const packageJsonPath = path.join(targetDir, 'package.json');
+if (fs.existsSync(packageJsonPath)) {
+  console.log(`\n📦 [Step 1] Updating package.json dependencies...`);
+  const pkgStr = fs.readFileSync(packageJsonPath, 'utf8');
+  try {
+    const pkg = JSON.parse(pkgStr);
+    let modified = false;
+    for (const field of ['dependencies', 'devDependencies']) {
+      if (pkg[field] && pkg[field]['react-router-dom']) {
+        const v = pkg[field]['react-router-dom'];
+        delete pkg[field]['react-router-dom'];
+        pkg[field]['react-router'] = "^7.14.2";
+        modified = true;
+      }
+    }
+    if (modified) {
+      fs.writeFileSync(packageJsonPath, JSON.stringify(pkg, null, 4) + '\n', 'utf8');
+      console.log(GREEN(`  ✔ Replaced react-router-dom with react-router@7`));
+    } else {
+      console.log(DIM(`  - No react-router-dom dependency found to update.`));
+    }
+  } catch (e) {
+    console.log(RED(`  ❌ Failed to parse package.json: ` + e.message));
+  }
+} else {
+  console.log(YELLOW(`⚠ No package.json found in target directory.`));
 }
 
 // 3. Create bulk runner script to execute via ts-node
