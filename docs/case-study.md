@@ -2,6 +2,8 @@
 
 <div align="center">
   <br/>
+  <img src="../assets/logo.png" alt="React Router v6 to v7 Migration Engine" width="140" />
+  <br/><br/>
   <strong>How we built an AST-powered migration engine that transforms entire codebases<br/>with zero false positives — and what we learned along the way.</strong>
   <br/><br/>
   
@@ -432,6 +434,12 @@ graph LR
     &nbsp;•&nbsp;
     <a href="https://github.com/Ankit-raj-11/react-router-v6-to-v7">💻 View Source</a>
   </strong>
+  <br/><br/>
+  <a href="https://www.linkedin.com/posts/ankit-111-raj_react-router-v6-codebase-to-v7-powered-share-7455742575501578240-tgIX"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  &nbsp;
+  <a href="https://x.com/Ankitraj411085/status/2049978020002517470"><img src="https://img.shields.io/badge/𝕏-000000?style=flat-square&logo=x&logoColor=white" alt="X" /></a>
+  &nbsp;
+  <a href="https://github.com/Ankit-raj-11/react-router-v6-to-v7"><img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" /></a>
   <br/><br/>
   <sub>Built with ❤️ by <a href="https://github.com/Ankit-raj-11">Ankit-raj-11</a> — Hackathon Submission, May 2026</sub>
   <br/><br/>

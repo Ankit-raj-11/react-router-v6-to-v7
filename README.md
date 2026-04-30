@@ -1,5 +1,7 @@
 <div align="center">
 
+  <img src="./assets/logo.png" alt="React Router v6 to v7 Migration Engine" width="180" />
+
   <h1>React Router v6 → v7<br/>Autonomous Migration Engine</h1>
 
   <p>
@@ -12,6 +14,11 @@
     <img src="https://img.shields.io/badge/False_Positives-0%25-10b981?style=for-the-badge" alt="Zero False Positives" />
     <img src="https://img.shields.io/badge/Tests-3%2F3_Passing-10b981?style=for-the-badge&logo=checkmarx&logoColor=white" alt="Tests Passing" />
     <img src="https://img.shields.io/badge/Idempotent-Yes-10b981?style=for-the-badge" alt="Idempotent" />
+  </p>
+
+  <p>
+    <a href="https://www.linkedin.com/posts/ankit-111-raj_react-router-v6-codebase-to-v7-powered-share-7455742575501578240-tgIX"><img src="https://img.shields.io/badge/LinkedIn-Post-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Post" /></a>
+    <a href="https://x.com/Ankitraj411085/status/2049978020002517470"><img src="https://img.shields.io/badge/𝕏-Post-000000?style=for-the-badge&logo=x&logoColor=white" alt="X Post" /></a>
   </p>
 
   <br/>
@@ -333,6 +340,9 @@ Each test validates input fixtures against strictly-defined expected outputs usi
 ```
 react-router-v6-to-v7/
 │
+├── assets/                     # 🎨 Project assets
+│   └── logo.png                #    Project logo
+│
 ├── apply-codemod.js            # 🚀 Main CLI orchestrator
 ├── codemod.yaml                # 📋 Codemod registry manifest
 ├── workflow.yaml               # ⚙️ Codemod workflow definition
@@ -399,6 +409,8 @@ Want to understand how we engineered zero false positives, bypassed failing CLI 
 | 🔬 **Case Study** | [docs/case-study.md](./docs/case-study.md) |
 | 🦀 **ast-grep** | [github.com/ast-grep/ast-grep](https://github.com/ast-grep/ast-grep) |
 | 📚 **React Router v7** | [reactrouter.com](https://reactrouter.com) |
+| 🔗 **LinkedIn** | [LinkedIn Post](https://www.linkedin.com/posts/ankit-111-raj_react-router-v6-codebase-to-v7-powered-share-7455742575501578240-tgIX) |
+| 𝕏 **X (Twitter)** | [X Post](https://x.com/Ankitraj411085/status/2049978020002517470) |
 
 ---
 
@@ -407,5 +419,11 @@ Want to understand how we engineered zero false positives, bypassed failing CLI 
   <strong>Built with ❤️ by <a href="https://github.com/Ankit-raj-11">Ankit-raj-11</a></strong>
   <br/>
   <sub>Hackathon Submission — May 2026</sub>
+  <br/><br/>
+  <a href="https://www.linkedin.com/posts/ankit-111-raj_react-router-v6-codebase-to-v7-powered-share-7455742575501578240-tgIX"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  &nbsp;
+  <a href="https://x.com/Ankitraj411085/status/2049978020002517470"><img src="https://img.shields.io/badge/𝕏-000000?style=flat-square&logo=x&logoColor=white" alt="X" /></a>
+  &nbsp;
+  <a href="https://github.com/Ankit-raj-11/react-router-v6-to-v7"><img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" /></a>
   <br/><br/>
 </div>
